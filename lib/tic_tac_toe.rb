@@ -130,7 +130,6 @@ def won?(board)
   if result == nil 
     return false  
   end
-  binding.pry
   return WIN_COMBINATIONS[$winningcombo]
 end
 
@@ -149,14 +148,8 @@ def play(board)
   
   if isover
     result = won?(board)
-    
     if result
-      newresult = won?(board)
-      puts newresult.class
-      binding.pry
-      firstlocation = newresult[0]
-     # puts firstlocation
-      #puts "Congratulations #{board[firstlocation]}!"
+      puts "Congratulations #{winner(board)}!"
     end
   end
     
