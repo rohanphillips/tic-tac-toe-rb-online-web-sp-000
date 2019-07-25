@@ -1,4 +1,6 @@
 # Helper Method
+require "pry"
+
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
@@ -82,13 +84,7 @@ WIN_COMBINATIONS = [
 PLAYERS = ["X", "O"]  
 $winningcombo = -1 
 
-def won?(board)
-  result = winner(board)
-  if result == nil 
-    return false  
-  end
-  return WIN_COMBINATIONS[$winningcombo]
-end
+
 
 def draw?(board)
   result = won?(board)
@@ -129,6 +125,15 @@ def turn(board)
  display_board(board)
 end
 
+def won?(board)
+  result = winner(board)
+  if result == nil 
+    return false  
+  end
+  binding.pry
+  return WIN_COMBINATIONS[$winningcombo]
+end
+
 def play(board)
   isover = over?(board)
   if isover == false 
@@ -146,8 +151,9 @@ def play(board)
     result = won?(board)
     
     if result
-      newresult = result
+      newresult = won?(board)
       puts newresult.class
+      binding.pry
       firstlocation = newresult[0]
      # puts firstlocation
       #puts "Congratulations #{board[firstlocation]}!"
